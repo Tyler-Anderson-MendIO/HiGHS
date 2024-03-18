@@ -11,14 +11,15 @@ pool:
 
 steps:
 - script: | 
-    pwd
-    ls
-    cd ..
-    ls
-    pwd
-  displayName: 'Run a one-line script'
+    echo "Downloading the UA"
+    curl -lJO "https://github.com/whitesource/unified-agent-distribution/releases/latest/download/wss-unified-agent.jar"
+    echo "Downloading the CLI"
+    curl "https://downloads.mend.io/production/unified/latest/linux_amd64/mend" -o "./mend"
+  displayName: 'Download Scanners'
 
 - script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+    echo "Verifying the UA"
+    java -jar "./wss-unified-agent.jar" -v
+    echo "Verifying the CLI"
+    mend version
+  displayName: 'Verifying the Scanners'
