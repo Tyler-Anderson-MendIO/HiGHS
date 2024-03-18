@@ -12,14 +12,15 @@ pool:
 steps:
 - script: | 
     echo "Downloading the UA"
-    curl -LJ "https://github.com/whitesource/unified-agent-distribution/releases/latest/download/wss-unified-agent.jar" -O "UA.jar"
+    curl -LJO "https://github.com/whitesource/unified-agent-distribution/releases/latest/download/wss-unified-agent.jar"
     echo "Downloading the CLI"
     curl https://downloads.mend.io/cli/linux_amd64/mend -o /usr/local/bin/mend && chmod +x /usr/local/bin/mend
   displayName: 'Download Scanners'
 
 - script: |
+    ls -lah
     echo "Verifying the UA"
-    java -jar UA.jar -v
+    java -jar wss-unified-agent.jar -v
     echo "Verifying the CLI"
     mend version
   displayName: 'Verifying the Scanners'
