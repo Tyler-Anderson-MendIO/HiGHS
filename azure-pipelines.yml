@@ -34,7 +34,7 @@ steps:
     WS_APIKEY: $(WS_APIKEY)
   displayName: 'Running the UA'
 
-- script: mend dep --non-interactive --update --scope "$(Build.Repository.Name)//$(Build.SourceBranchName)"
+- script: mend dep --non-interactive --extended --update --scope "$(Build.Repository.Name)//$(Build.SourceBranchName)"
   env:
     MEND_USER_KEY: $(WS_USERKEY)
     MEND_EMAIL: $(MEND_EMAIL)
