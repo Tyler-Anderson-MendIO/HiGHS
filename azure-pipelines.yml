@@ -18,7 +18,6 @@ steps:
   displayName: 'Download Scanners'
 
 - script: |
-    ls -lah
     echo "Verifying the UA"
     java -jar wss-unified-agent.jar -v
     echo "Verifying the CLI"
