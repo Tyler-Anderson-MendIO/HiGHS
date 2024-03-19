@@ -34,3 +34,6 @@ steps:
     WS_APIKEY: $(WS_APIKEY)
     
   displayName: 'Running the UA'
+
+
+  enabled:
