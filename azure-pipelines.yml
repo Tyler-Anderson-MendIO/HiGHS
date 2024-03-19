@@ -26,7 +26,7 @@ steps:
 
 - script: java -jar wss-unified-agent.jar
   env: 
-    WS_LOG_LEVEL: DEBUG
+    WS_LOG_LEVEL: "DEBUG"
     WS_SHOWPROGRESSBAR: FALSE
     WS_PROJECTNAME: $(Build.Repository.Name)_$(Build.SourceBranchName)
     WS_PRODUCTNAME: $(Build.Repository.Name)
