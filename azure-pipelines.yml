@@ -39,5 +39,5 @@ steps:
     MEND_USER_KEY: $(WS_USERKEY)
     MEND_EMAIL: $(MEND_EMAIL)
     MEND_URL: $(MEND_URL)
-    MEND_LOG_LEVE: "DEBUG"
+    MEND_LOG_LEVEL: "DEBUG"
   displayName: "Running the CLI"
