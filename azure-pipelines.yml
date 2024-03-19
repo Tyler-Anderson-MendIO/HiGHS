@@ -36,8 +36,7 @@ steps:
 
 - script: mend dep --non-interactive --update --scope "$(Build.Repository.Name)//$(Build.SourceBranchName)"
   env:
-    WS_USERKEY: $(WS_USERKEY)
-    WS_APIKEY: $(WS_APIKEY)
+    MEND_USER_KEY: $(WS_USERKEY)
     MEND_EMAIL: $(MEND_EMAIL)
     MEND_URL: $(MEND_URL)
     MEND_LOG_LEVE: "DEBUG"
