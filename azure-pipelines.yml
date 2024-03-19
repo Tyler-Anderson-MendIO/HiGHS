@@ -32,8 +32,13 @@ steps:
     WS_PRODUCTNAME: $(Build.Repository.Name)
     WS_USERKEY: $(WS_USERKEY)
     WS_APIKEY: $(WS_APIKEY)
-    
   displayName: 'Running the UA'
 
-
-  enabled:
+- script: mend dep --non-interactive --update --scope "$(Build.Repository.Name)//$(Build.SourceBranchName)"
+  env:
+    WS_USERKEY: $(WS_USERKEY)
+    WS_APIKEY: $(WS_APIKEY)
+    MEND_EMAIL: $(MEND_EMAIL)
+    MEND_URL: $(MEND_URL)
+    MEND_LOG_LEVE: "DEBUG"
+  displayName: "Running the CLI"
