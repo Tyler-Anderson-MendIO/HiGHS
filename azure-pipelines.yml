@@ -24,7 +24,7 @@ steps:
     mend version
   displayName: 'Verifying the Scanners'
 
-- script: java -jar wss-unified-agent.jar -projectTag $(Build.Repository.URL)
+- script: java -jar wss-unified-agent.jar -projectTag $(Build.Repository.Uri)
   env: 
     WS_LOG_LEVEL: "DEBUG"
     WS_SHOWPROGRESSBAR: FALSE
