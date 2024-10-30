@@ -12,6 +12,7 @@ pool:
 steps:
 
  - script: |
+      env
       echo "Testing Environment Variables"
       echo $(DevOpsRepositoryProperties.RepoId)
    displayName: 'Env Var Test'
