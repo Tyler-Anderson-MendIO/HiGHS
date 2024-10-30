@@ -10,36 +10,42 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-- script: | 
-    echo "Downloading the UA"
-    curl -LJO "https://github.com/whitesource/unified-agent-distribution/releases/latest/download/wss-unified-agent.jar"
-    echo "Downloading the CLI"
-    curl https://downloads.mend.io/cli/linux_amd64/mend -o /usr/local/bin/mend && chmod +x /usr/local/bin/mend
-  displayName: 'Download Scanners'
 
-- script: |
-    echo "Verifying the UA"
-    java -jar wss-unified-agent.jar -v
-    echo "Verifying the CLI"
-    mend version
-  displayName: 'Verifying the Scanners'
+ - script: |
+      echo "Testing Environment Variables"
+      echo $(DevOpsRepositoryProperties.RepoId)
+   displayName: 'Env Var Test'
 
-- script: |
-    mvn clean install
-    java -jar wss-unified-agent.jar -projectTag $(Build.Repository.Uri) 
-  env: 
-    WS_LOG_LEVEL: "DEBUG"
-    WS_SHOWPROGRESSBAR: FALSE
-    WS_PROJECTNAME: $(Build.Repository.Name)_$(Build.SourceBranchName)
-    WS_PRODUCTNAME: $(Build.Repository.Name)
-    WS_USERKEY: $(WS_USERKEY)
-    WS_APIKEY: $(WS_APIKEY)
-  displayName: 'Running the UA'
+# - script: | 
+#     echo "Downloading the UA"
+#     curl -LJO "https://github.com/whitesource/unified-agent-distribution/releases/latest/download/wss-unified-agent.jar"
+#     echo "Downloading the CLI"
+#     curl https://downloads.mend.io/cli/linux_amd64/mend -o /usr/local/bin/mend && chmod +x /usr/local/bin/mend
+#   displayName: 'Download Scanners'
 
-- script: mend dep --non-interactive --extended --update --scope "$(Build.Repository.Name)//$(Build.SourceBranchName)"
-  env:
-    MEND_USER_KEY: $(WS_USERKEY)
-    MEND_EMAIL: $(MEND_EMAIL)
-    MEND_URL: $(MEND_URL)
-    MEND_LOG_LEVEL: "DEBUG"
-  displayName: "Running the CLI"
+# - script: |
+#     echo "Verifying the UA"
+#     java -jar wss-unified-agent.jar -v
+#     echo "Verifying the CLI"
+#     mend version
+#   displayName: 'Verifying the Scanners'
+
+# - script: |
+#     mvn clean install
+#     java -jar wss-unified-agent.jar -projectTag $(Build.Repository.Uri) 
+#   env: 
+#     WS_LOG_LEVEL: "DEBUG"
+#     WS_SHOWPROGRESSBAR: FALSE
+#     WS_PROJECTNAME: $(Build.Repository.Name)_$(Build.SourceBranchName)
+#     WS_PRODUCTNAME: $(Build.Repository.Name)
+#     WS_USERKEY: $(WS_USERKEY)
+#     WS_APIKEY: $(WS_APIKEY)
+#   displayName: 'Running the UA'
+
+# - script: mend dep --non-interactive --extended --update --scope "$(Build.Repository.Name)//$(Build.SourceBranchName)"
+#   env:
+#     MEND_USER_KEY: $(WS_USERKEY)
+#     MEND_EMAIL: $(MEND_EMAIL)
+#     MEND_URL: $(MEND_URL)
+#     MEND_LOG_LEVEL: "DEBUG"
+#   displayName: "Running the CLI"
